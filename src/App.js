@@ -8,7 +8,7 @@ import Register from './Pages/Register/Register';
 
 function App() {
   return (
-    <div className='lg:px-12 bg-base-200'>
+    <div>
 <Navbar></Navbar>
 
 <Routes>

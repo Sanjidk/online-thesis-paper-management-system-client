@@ -4,7 +4,7 @@ import PaperType from './PaperType';
 
 const Home = () => {
     return (
-        <div>
+        <div className='lg:px-12'>
             <Banner></Banner>
             <PaperType></PaperType>
         </div>
