@@ -7,8 +7,9 @@ const menuItems = <>
  
             <li><Link to="/">Home</Link></li>
             <li><Link to="login">Login</Link></li>
+            <li><Link to="upload">Upload Report</Link></li>
+            <li><Link to="list">Report List</Link></li>
             <li><Link to="register">Register</Link></li>
-            <li><Link to="about">About</Link></li>
 
 </>
 
@@ -25,7 +26,7 @@ const menuItems = <>
 
             </ul>
           </div>
-          <Link to="/" className="btn btn-ghost normal-case lg:text-xl">Online Thesis Paper Management System</Link>
+          <Link to="/" className="btn btn-ghost normal-case lg:text-xl">Online Thesis Report Management System</Link>
         </div>
         <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
