@@ -9,7 +9,7 @@ import ReportList from './Pages/Reports/ReportList';
 
 function App() {
   return (
-    <div>
+    <div> 
       <Navbar></Navbar>
 
       <Routes>
