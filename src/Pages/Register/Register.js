@@ -1,32 +1,40 @@
 import React from 'react';
 import Loading from '../Shared/Loading';
 import { useForm } from 'react-hook-form';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
 
     const { register, formState: { errors }, handleSubmit, } = useForm();
     const [createUserWithEmailAndPassword, user, loading, error] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+    const navigate = useNavigate();
+
+
     let signInError;
 
 
-    if (loading) {
+    if (loading || updating) {
         return <Loading></Loading>
     }
 
-    if (error) {
-        signInError = <p className='text-red-400'><small>{error?.message}</small></p>
+    if (error || updateError) {
+        signInError = <p className='text-red-400'><small>{error?.message || updateError?.message}</small></p>
     }
 
     if (user) {
         console.log(user);
     }
 
-    const onSubmit = data => {
-        createUserWithEmailAndPassword(data.email, data.password);
-    };
+    const onSubmit = async data => {
+        await createUserWithEmailAndPassword(data.email, data.password);
+        await updateProfile({ displayName: data.name });
+        navigate('/dashboard');
+
+    }
+
 
     return (
         <div className='flex justify-center items-center'>
@@ -56,6 +64,7 @@ const Register = () => {
                             <input
                                 type="number"
                                 placeholder="Student ID"
+                                name='student'
                                 className="input input-bordered input-success w-full max-w-xs"
                                 {...register("number", {
                                     required: {
@@ -115,7 +124,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-control w-full max-w-xs">
-                            <select class="select select-success mb-4">
+                            <select className="select select-success mb-4">
                                 <option disabled selected>Choose Your Semester</option>
                                 <option>Summer</option>
                                 <option>Fall</option>
@@ -124,7 +133,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-control w-full max-w-xs">
-                            <select class="select select-success mb-4">
+                            <select className="select select-success mb-4">
                                 <option disabled selected>Year</option>
                                 <option>2022</option>
                                 <option>2023</option>
