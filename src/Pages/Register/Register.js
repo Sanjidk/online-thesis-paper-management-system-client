@@ -28,9 +28,12 @@ const Register = () => {
         console.log(user);
     }
 
+    
     const onSubmit = async data => {
         await createUserWithEmailAndPassword(data.email, data.password);
         await updateProfile({ displayName: data.name });
+
+
         navigate('/dashboard');
 
     }
@@ -64,7 +67,7 @@ const Register = () => {
                             <input
                                 type="number"
                                 placeholder="Student ID"
-                                name='student'
+                                name='studentID'
                                 className="input input-bordered input-success w-full max-w-xs"
                                 {...register("number", {
                                     required: {
@@ -133,12 +136,7 @@ const Register = () => {
                         </div>
 
                         <div className="form-control w-full max-w-xs">
-                            <select className="select select-success mb-4">
-                                <option disabled selected>Year</option>
-                                <option>2022</option>
-                                <option>2023</option>
-                                <option>2024</option>
-                            </select>
+                            <input type="number" placeholder="Your Admission Year" className="input input-bordered input-success w-full max-w-xs" required />
                         </div>
 
                         {signInError}

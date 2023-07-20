@@ -11,6 +11,8 @@ import Dashboard from './Pages/Dashboard/Dashboard';
 import Notice from './Pages/Dashboard/Notice';
 import UserList from './Pages/Dashboard/UserList';
 import ReportList from './Pages/Dashboard/ReportList';
+import CreateNotice from './Pages/Dashboard/CreateNotice';
+import CheckPlagiarism from './Pages/Dashboard/CheckPlagiarism';
 
 function App() {
   return (
@@ -20,12 +22,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="login" element={<Login />}></Route>
-
-        <Route path="upload" element={
-        <RequireAuth>
-        <UploadReport />
-          </RequireAuth>
-        }></Route>
+        <Route path="register" element={<Register></Register>}></Route>
 
         <Route path="dashboard" element={
         <RequireAuth>
@@ -33,6 +30,9 @@ function App() {
           </RequireAuth>
         }>
         <Route index element={<Notice />}></Route>
+        <Route path='createNotice' element={<CreateNotice />}></Route>
+        <Route path='plagiarism' element={<CheckPlagiarism />}></Route>
+        <Route path='upload' element={<UploadReport />}></Route>
         <Route path='users' element={<UserList />}></Route>
         <Route path='reportList' element={<ReportList />}></Route>
         </Route>

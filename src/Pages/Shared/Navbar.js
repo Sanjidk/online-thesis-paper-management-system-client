@@ -24,7 +24,6 @@ const Navbar = () => {
   const menuItems = <>
 
     <li><Link to="/">Home</Link></li>
-    <li><Link to="upload">Upload Report</Link></li>
 
     {
       user &&
@@ -38,6 +37,13 @@ const Navbar = () => {
         <button onClick={logout} >Logout</button>
         :
         <Link to="/login">Login</Link>
+    }</li>
+
+    <li>{
+      !user ?
+        <Link to="/register">Register</Link>
+        :
+        <></>
     }</li>
 
   </>
@@ -66,7 +72,7 @@ const Navbar = () => {
       </div>
 
       <div className="lg:hidden navbar-end">
-      <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Sidebar</label>
+        <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Sidebar</label>
       </div>
     </div>
   );
